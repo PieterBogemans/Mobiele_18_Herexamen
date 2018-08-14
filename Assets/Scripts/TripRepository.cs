@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TripRepository : MonoBehaviour
 {
 
     public int IdCount { get; set; }
     public Dictionary<int, Trip> Trips { get; set; }
 
-
-    public TripRepository()
-    {
-        IdCount = 0;
-        Trips = new Dictionary<int, Trip>();
-    }
 
     public void AddTrip(string name, Currency defaultCurrency)
     {
@@ -39,15 +34,9 @@ public class TripRepository : MonoBehaviour
         throw new System.Exception("Name not in repo");
     }
 
-    // Use this for initialization
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        IdCount = 0;
+        Trips = new Dictionary<int, Trip>();
     }
 }

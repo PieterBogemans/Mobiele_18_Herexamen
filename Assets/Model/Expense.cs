@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Expense : MonoBehaviour {
+public class Expense {
 
     public int ExpenseId { get; set; }
     public int TripId { get; set; }

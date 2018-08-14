@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemToPay : MonoBehaviour {
+public class ItemToPay {
 
     public string ItemName { get; set; }
     public decimal PriceInUSD { get; set; }

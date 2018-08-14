@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transaction : MonoBehaviour {
+public class Transaction {
 
     public int Payer { get; set; }
     public int Payee { get; set; }

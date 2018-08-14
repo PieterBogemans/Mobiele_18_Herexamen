@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trip : MonoBehaviour {
+public class Trip {
 
     public int Id { get; set; }
     public string LocationName { get; set; }

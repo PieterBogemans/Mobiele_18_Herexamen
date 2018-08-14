@@ -6,7 +6,20 @@ public class CurrencyRepository : MonoBehaviour {
     public List<Currency> Currencies { get; set; }
     public CurrencyConversionRate Rates { get; set; }
 
-    public CurrencyRepository()
+    public Currency GetCurrencyWithName(string currencyCode)
+    {
+        foreach (Currency currency in Currencies)
+        {
+            if (currency.CurrencyCode.Equals(currencyCode))
+            {
+                return currency;
+            }
+        }
+        return null;
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         Rates = new CurrencyConversionRate();
         Currencies = new List<Currency>()
@@ -183,23 +196,6 @@ public class CurrencyRepository : MonoBehaviour {
             { new Currency("ZWL")},
         };
     }
-
-    public Currency GetCurrencyWithName(string currencyCode)
-    {
-        foreach (Currency currency in Currencies)
-        {
-            if (currency.CurrencyCode.Equals(currencyCode))
-            {
-                return currency;
-            }
-        }
-        return null;
-    }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {

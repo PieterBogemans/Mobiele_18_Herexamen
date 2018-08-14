@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrencyConversionRate : MonoBehaviour {
+public class CurrencyConversionRate {
 
     public Dictionary<string, double> Rates { get; set; }
 
