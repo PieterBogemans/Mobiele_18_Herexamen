@@ -17,6 +17,7 @@ public class Person {
     public Person(string Name, int id)
     {
         Id = id;
+        PersonName = Name;
         OwesPerson = new Dictionary<int, decimal>();
         Trips = new List<int>();
         Transactions = new List<Transaction>();

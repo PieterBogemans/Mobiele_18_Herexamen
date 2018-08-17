@@ -6,16 +6,10 @@ using UnityEngine.UI;
 public class AddTrip : MonoBehaviour {
 
     public GameObject TripLocationName;
-    public GameObject CurrencyDropdown;
     private TripElementList tripElementList;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
 		
 	}
 

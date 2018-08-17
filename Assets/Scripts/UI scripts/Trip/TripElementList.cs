@@ -29,7 +29,7 @@ public class TripElementList : MonoBehaviour {
         foreach (KeyValuePair<int, Trip> trip in repo.Trips)
         {
             TripElement element = (TripElement)Instantiate(prefab);
-            element.Prime(trip.Value);
+            element.PrimeButton(trip.Value);
             element.transform.SetParent(targetTransform, false);
         }
     }

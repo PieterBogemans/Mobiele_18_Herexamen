@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CurrencyDropDown : MonoBehaviour {
 
     public Dropdown Dropdown;
+    public Dropdown AddCurrencyToTrip;
     List<string> dropdownOptions = new List<string>();
     public string selectedCurrency;
 
@@ -23,11 +24,7 @@ public class CurrencyDropDown : MonoBehaviour {
             dropdownOptions.Add(currency.CurrencyCode);
         }
         Dropdown.AddOptions(dropdownOptions);
+        AddCurrencyToTrip.AddOptions(dropdownOptions);
         selectedCurrency = dropdownOptions[0];
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
