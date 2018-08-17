@@ -7,6 +7,7 @@ public class PersonElement : MonoBehaviour {
 
     public Button PersonButton;
     public Person Person;
+    public GameObject TripPane;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +24,7 @@ public class PersonElement : MonoBehaviour {
 
     public void AddButtonOnClick()
     {
-        //PeoplePane.transform.SetAsLastSibling();
+        TripPane.transform.SetAsLastSibling();
         GameObject Scripts = GameObject.Find("Scripts");
         PersonDetails details = Scripts.GetComponent<PersonDetails>();
         details.Setup(Person);

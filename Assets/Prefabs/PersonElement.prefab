@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222349418487408286}
   - component: {fileID: 114004741347461712}
   - component: {fileID: 114947273061711200}
-  - component: {fileID: 114218714716941976}
+  - component: {fileID: 114473168468693118}
   m_Layer: 5
   m_Name: PersonElement
   m_TagString: Untagged
@@ -92,18 +92,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114218714716941976
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1417477729846376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c685541cf8e2e724aa5722c93e0811be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tripNameButton: {fileID: 114887618637214078}
 --- !u!114 &114330341240563650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +152,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114473168468693118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417477729846376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d369b746b3b3a42a3dd690fed0d0e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PersonButton: {fileID: 114887618637214078}
 --- !u!114 &114887618637214078
 MonoBehaviour:
   m_ObjectHideFlags: 1

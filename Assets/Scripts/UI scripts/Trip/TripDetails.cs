@@ -11,6 +11,9 @@ public class TripDetails : MonoBehaviour {
     public Transform OtherCurrencies;
     public CurrencyElement currencyElementPrefab;
 
+    public Transform PeopleOnTrip;
+    public PersonElement PersonElementPrefab;
+
     public Trip Trip;
 
 	// Use this for initialization
@@ -25,6 +28,30 @@ public class TripDetails : MonoBehaviour {
         TripLocationName.text = Trip.LocationName;
         DefaultCurrency.text = Trip.DefaultCurrency.CurrencyCode;
         UpdateCurrencies();
+        UpdatePeople();
+    }
+
+    public void AddPerson(Person person)
+    {
+        Trip.AddPersonToTrip(person);
+        UpdatePeople();
+    }
+
+    public void UpdatePeople()
+    {
+        foreach (Transform child in PeopleOnTrip.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        if (Trip != null)
+        {
+            foreach (KeyValuePair<int, Person> person in Trip.PeopleOnTrip)
+            {
+                PersonElement element = (PersonElement)Instantiate(PersonElementPrefab);
+                element.PrimeButton(person.Value);
+                element.transform.SetParent(PeopleOnTrip, false);
+            }
+        }
     }
 
     public void AddCurrency(Currency currency)
