@@ -5,6 +5,7 @@ using UnityEngine;
 public class Expense {
 
     public int ExpenseId { get; set; }
+    public string ExpenseName { get; set; }
     public int TripId { get; set; }
     public double TotalPrice { get; set; }
     public Person WhoPaid { get; set; }
@@ -12,9 +13,10 @@ public class Expense {
     public Currency Currency { get; set; }
 
 
-    public Expense(Person whoPaid, Trip trip)
+    public Expense(string expenseName, Person whoPaid, Trip trip)
     {
         TripId = trip.Id;
+        ExpenseName = expenseName;
         WhoPaid = whoPaid;
         ItemsToPay = new List<ItemToPay>();
     }

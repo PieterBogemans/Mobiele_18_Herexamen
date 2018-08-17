@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PersonElement : MonoBehaviour {
+public class ExpenseElement : MonoBehaviour {
 
-    public Button PersonButton;
-    public Person Person;
-    public GameObject TripPane;
+    public Button ExpenseButton;
+    public Expense Expense;
 
 	// Use this for initialization
 	void Start () {
-        if (Person != null) PrimeButton(Person);
+        if (Expense != null) PrimeButton(Expense);
 	}
 
-    public void PrimeButton(Person person)
+    public void PrimeButton(Expense expense)
     {
-        this.Person = person;
+        this.Expense = expense;
 
-        PersonButton.GetComponentInChildren<Text>().text = Person.PersonName;
-        PersonButton.onClick.AddListener(AddButtonOnClick);
+        ExpenseButton.GetComponentInChildren<Text>().text = Expense.ExpenseName;
+        ExpenseButton.onClick.AddListener(AddButtonOnClick);
     }
 
     public void AddButtonOnClick()
