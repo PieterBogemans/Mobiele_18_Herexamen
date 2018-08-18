@@ -42,12 +42,11 @@ public class PeopleDropdown : MonoBehaviour {
     public void PrimeAddPersonToItem(Dropdown dropdown)
     {
         TripDetails details = GetComponent<TripDetails>();
-        ExpenseDetails expenseDetails = GetComponent<ExpenseDetails>();
         dropdownOptions = new List<string>();
         dropdown.options.Clear();
         foreach (KeyValuePair<int, Person> person in details.Trip.PeopleOnTrip)
         {
-            if(person.Value.PersonName != expenseDetails.Expense.WhoPaid.PersonName) dropdownOptions.Add(person.Value.PersonName);
+            dropdownOptions.Add(person.Value.PersonName);
         }
         dropdown.AddOptions(dropdownOptions);
         if (dropdownOptions.Count != 0) selectedPerson = dropdownOptions[0];

@@ -25,7 +25,9 @@ public class TripElement : MonoBehaviour {
     public void AddButtonOnClick()
     {
         GameObject tripPane = GameObject.Find("TripDetailsPane");
+        GameObject tripPanel = GameObject.Find("TripDetailsPanel");
         tripPane.transform.SetAsLastSibling();
+        tripPanel.transform.SetAsLastSibling();
         GameObject scripts = GameObject.Find("Scripts");
         TripDetails details = scripts.GetComponent<TripDetails>();
         details.Setup(Trip);
