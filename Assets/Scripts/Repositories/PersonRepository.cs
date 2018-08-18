@@ -35,7 +35,7 @@ public class PersonRepository : MonoBehaviour {
                 return person;
             }
         }
-        throw new System.Exception("Name not in repo");
+        return null;
     }
 
     // Use this for initialization

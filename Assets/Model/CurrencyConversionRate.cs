@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class CurrencyConversionRate {
-
+public class CurrencyConversionRate
+{
     public Dictionary<string, double> Rates { get; set; }
 
     public CurrencyConversionRate()
@@ -183,6 +182,11 @@ public class CurrencyConversionRate {
         };
     }
 
+    public void ChangeRate(string currencyCode, double rate)
+    {
+        Rates[currencyCode] = rate;
+    }
+
     public double GetConversionFrom(string originalCurrencyCode, string targetCurrencyCode)
     {
         double targetRate, thisRate;
@@ -191,14 +195,4 @@ public class CurrencyConversionRate {
         return targetRate / thisRate;
 
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

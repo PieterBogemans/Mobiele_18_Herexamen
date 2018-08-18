@@ -12,11 +12,6 @@ public class TripElementList : MonoBehaviour {
     void Start () {
         Prime();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void Prime ()
     {

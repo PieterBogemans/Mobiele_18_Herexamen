@@ -5,12 +5,16 @@ using UnityEngine;
 public class Currency {
 
     public string CurrencyCode { get; set; }
-    public CurrencyConversionRate Rates { get; set; }
+    public static CurrencyConversionRate Rates { get; set; }
+    public static CurrencyConversionRate MemoryRates { get; set; }
+    public static CurrencyConversionRate UserRates { get; set; }
 
     public Currency(string code)
     {
         CurrencyCode = code;
-        Rates = new CurrencyConversionRate();
+        MemoryRates = new CurrencyConversionRate();
+        UserRates = new CurrencyConversionRate();
+        Rates = MemoryRates;
     }
 
     public double GetConversionRateFrom(string targetCurrencyCode)
@@ -21,6 +25,11 @@ public class Currency {
     public decimal GetConversionFrom(string targetCurrencyCode, decimal price)
     {
         return  price * (decimal) Rates.GetConversionFrom(this.CurrencyCode, targetCurrencyCode);
+    }
+
+    public decimal GetPriceInUSD(decimal price)
+    {
+        return price * (decimal) Rates.GetConversionFrom(this.CurrencyCode, "USD");
     }
 
 

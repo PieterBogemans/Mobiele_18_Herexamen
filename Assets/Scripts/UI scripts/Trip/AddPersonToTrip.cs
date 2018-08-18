@@ -23,5 +23,4 @@ public class AddPersonToTrip : MonoBehaviour {
         personList.Prime();
     }
 
-
 }

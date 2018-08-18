@@ -7,23 +7,25 @@ public class Expense {
     public int ExpenseId { get; set; }
     public string ExpenseName { get; set; }
     public int TripId { get; set; }
-    public double TotalPrice { get; set; }
+    public decimal TotalPrice { get; set; }
     public Person WhoPaid { get; set; }
     public List<ItemToPay> ItemsToPay { get; set; }
     public Currency Currency { get; set; }
 
 
-    public Expense(string expenseName, Person whoPaid, Trip trip)
+    public Expense(string expenseName, Person whoPaid, Trip trip, Currency currency)
     {
         TripId = trip.Id;
         ExpenseName = expenseName;
         WhoPaid = whoPaid;
         ItemsToPay = new List<ItemToPay>();
+        Currency = currency;
+        TotalPrice = 0;
     }
 
     public void AddItem(string itemName, decimal price, Person whoConsumedItem)
     {
-        ItemToPay item = new ItemToPay(itemName, price, WhoPaid, whoConsumedItem, Currency);
+        ItemToPay item = new ItemToPay(itemName, price, WhoPaid, whoConsumedItem, Currency, this);
         ItemsToPay.Add(item);
     }
 

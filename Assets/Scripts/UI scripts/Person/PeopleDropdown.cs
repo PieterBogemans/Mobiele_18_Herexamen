@@ -26,21 +26,31 @@ public class PeopleDropdown : MonoBehaviour {
         TripDetails details = GetComponent<TripDetails>();
         dropdownOptions = new List<string>();
         AddPersonToTrip.options.Clear();
-
-        if (repo.People != null)
+        foreach (KeyValuePair<int, Person> person in repo.People)
         {
-            foreach (KeyValuePair<int, Person> person in repo.People)
+            bool personNotYetInTrip = true;
+            foreach (KeyValuePair<int, Person> TripPerson in details.Trip.PeopleOnTrip)
             {
-                bool personNotYetInTrip = true;
-                foreach (KeyValuePair<int, Person> TripPerson in details.Trip.PeopleOnTrip)
-                {
-                    if (personNotYetInTrip) { personNotYetInTrip = TripPerson.Value.Id != person.Value.Id; }
-                }
-                if (personNotYetInTrip) { dropdownOptions.Add(person.Value.PersonName); }
+                if (personNotYetInTrip) { personNotYetInTrip = TripPerson.Value.Id != person.Value.Id; }
             }
-            AddPersonToTrip.AddOptions(dropdownOptions);
-            if (dropdownOptions.Count != 0) selectedPerson = dropdownOptions[0];
+            if (personNotYetInTrip) { dropdownOptions.Add(person.Value.PersonName); }
         }
+        AddPersonToTrip.AddOptions(dropdownOptions);
+        if (dropdownOptions.Count != 0) selectedPerson = dropdownOptions[0];
+    }
+
+    public void PrimeAddPersonToItem(Dropdown dropdown)
+    {
+        TripDetails details = GetComponent<TripDetails>();
+        ExpenseDetails expenseDetails = GetComponent<ExpenseDetails>();
+        dropdownOptions = new List<string>();
+        dropdown.options.Clear();
+        foreach (KeyValuePair<int, Person> person in details.Trip.PeopleOnTrip)
+        {
+            if(person.Value.PersonName != expenseDetails.Expense.WhoPaid.PersonName) dropdownOptions.Add(person.Value.PersonName);
+        }
+        dropdown.AddOptions(dropdownOptions);
+        if (dropdownOptions.Count != 0) selectedPerson = dropdownOptions[0];
     }
 
     public void PrimeAddExpense()
@@ -48,7 +58,6 @@ public class PeopleDropdown : MonoBehaviour {
         TripDetails details = GetComponent<TripDetails>();
         dropdownOptions = new List<string>();
         AddPersonWhoPaidToExpense.options.Clear();
-
         foreach (KeyValuePair<int, Person> person in details.Trip.PeopleOnTrip)
         {
             dropdownOptions.Add(person.Value.PersonName); 

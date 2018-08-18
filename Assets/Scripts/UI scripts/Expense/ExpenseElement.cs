@@ -23,11 +23,13 @@ public class ExpenseElement : MonoBehaviour {
 
     public void AddButtonOnClick()
     {
-        /*
-        TripPane.transform.SetAsLastSibling();
-        GameObject Scripts = GameObject.Find("Scripts");
-        PersonDetails details = Scripts.GetComponent<PersonDetails>();
-        details.Setup(Person);
-        */
+        GameObject expenseDetails = GameObject.Find("ExpenseDetails");
+        expenseDetails.transform.SetAsLastSibling();
+        GameObject expenseDetailsPanel = GameObject.Find("ExpenseDetailsPanel");
+        expenseDetailsPanel.transform.SetAsLastSibling();
+
+        GameObject scripts = GameObject.Find("Scripts");
+        ExpenseDetails details = scripts.GetComponent<ExpenseDetails>();
+        details.Setup(Expense);
     }
 }

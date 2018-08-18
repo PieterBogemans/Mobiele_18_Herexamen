@@ -31,7 +31,7 @@ public class TripRepository : MonoBehaviour
                 return trip;
             }
         }
-        throw new System.Exception("Name not in repo");
+        return null;
     }
 
     void Start()

@@ -36,9 +36,9 @@ public class Trip {
         Expenses.Add(expense);
     }
 
-    public void AddExpenseToTrip(string expenseName, Person whoPaid)
+    public void AddExpenseToTrip(string expenseName, Person whoPaid, Currency currency)
     {
-        Expenses.Add(new Expense(expenseName, whoPaid, this));
+        Expenses.Add(new Expense(expenseName, whoPaid, this, currency));
     }
 
     public void AddCurrencyToTrip(Currency currency)
