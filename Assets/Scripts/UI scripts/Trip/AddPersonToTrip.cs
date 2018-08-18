@@ -23,4 +23,18 @@ public class AddPersonToTrip : MonoBehaviour {
         personList.Prime();
     }
 
+    public void ValideAddPersonToTrip()
+    {
+        PersonRepository repo = GetComponent<PersonRepository>();
+        GameObject.Find("AddPersonToTripButton").GetComponent<Button>().interactable = repo.People.Count < 1;
+        Text invalidPeopleCount = GameObject.Find("InvalidPeopleCount").GetComponent<Text>();
+        if (repo.People.Count < 1)
+        {
+            invalidPeopleCount.text = "No people in the application, please add people in the people tab above";
+        } else
+        {
+            invalidPeopleCount.text = "";
+        }
+    }
+
 }
