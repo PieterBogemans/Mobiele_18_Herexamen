@@ -8,23 +8,13 @@ public class Transaction {
     public int Payee { get; set; }
     public decimal Amount { get; set; }
 
-    public Transaction(Person payer, Person payee, decimal amount)
+    public Transaction(Person paidTo, Person payee, decimal amount)
     {
-        payer.UpdateOwesPerson(payee, -amount); 
-        payee.UpdateOwesPerson(payer, amount);
+        paidTo.AddDueFrom(payee, amount); 
+        payee.AddPaidBy(paidTo, amount);
 
-        Payer = payer.Id;
+        Payer = paidTo.Id;
         Payee = payee.Id;
+        Amount = amount;
     }
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

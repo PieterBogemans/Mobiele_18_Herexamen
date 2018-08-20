@@ -8,14 +8,9 @@ public class CurrencyDropDown : MonoBehaviour {
     List<string> dropdownOptions = new List<string>();
     public string selectedCurrency;
 
-    // Use this for initialization
     public void Dropdown_IndexChanged(int index)
     {
         selectedCurrency = dropdownOptions[index];
-    }
-
-    void Start ()
-    {
     }
 
     public void Prime(Dropdown dropdown)

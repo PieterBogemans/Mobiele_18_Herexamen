@@ -19,22 +19,10 @@ public class ItemToPay {
         expense.TotalPrice += Price;
         PriceInUSD = currency.GetConversionFrom("USD", price);
 
-        whoPaid.UpdateOwesPerson(whoConsumedItem, -PriceInUSD);
-        whoConsumedItem.UpdateOwesPerson(whoPaid, PriceInUSD);
+        whoConsumedItem.AddPaidBy(whoPaid, PriceInUSD);
+        whoPaid.AddDueFrom(whoConsumedItem, PriceInUSD);
 
         WhoPaid = whoPaid;
         WhoConsumedItem = whoConsumedItem;
     }
-
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

@@ -7,8 +7,8 @@ public class Person {
 
     public int Id { get; set; }
     public string PersonName { get; set; }
-    //Negative value == Person owes you
-    public Dictionary<int, decimal> OwesPerson { get; set; }
+    public Dictionary<int, decimal> AmountPaid { get; set; }
+    public Dictionary<int, decimal> AmountDue { get; set; }
     public List<int> Trips { get; set; }
     public List<Transaction> Transactions { get; set; }
 
@@ -18,7 +18,8 @@ public class Person {
     {
         Id = id;
         PersonName = Name;
-        OwesPerson = new Dictionary<int, decimal>();
+        AmountPaid = new Dictionary<int, decimal>();
+        AmountDue = new Dictionary<int, decimal>();
         Trips = new List<int>();
         Transactions = new List<Transaction>();
     }
@@ -28,45 +29,70 @@ public class Person {
         Trips.Add(trip.Id);
     }
 
-    public void UpdateOwesPerson(Person otherParty, decimal amount)
+    public void AddPaidBy(Person otherParty, decimal amount)
     {
         if (otherParty.Id == this.Id)
         {
 
-        } else if (OwesPerson.ContainsKey(otherParty.Id)) {
-            OwesPerson[otherParty.Id] += amount;
+        } else if (AmountPaid.ContainsKey(otherParty.Id)) {
+            AmountPaid[otherParty.Id] += amount;
         } else
         {
-            OwesPerson.Add(otherParty.Id, amount);
+            AmountPaid.Add(otherParty.Id, amount);
         }
     }
 
-    public void AddTransaction(Person paidTo, decimal amount)
+    public void AddDueFrom(Person otherParty, decimal amount)
     {
-        Transaction transaction = new Transaction(this, paidTo, amount);
+        if (otherParty.Id == this.Id)
+        {
+        }
+        else if (AmountDue.ContainsKey(otherParty.Id))
+        {
+            AmountDue[otherParty.Id] += amount;
+        }
+        else
+        {
+            AmountDue.Add(otherParty.Id, amount);
+        }
+    }
+
+    public void AddTransaction(Person paidTo, decimal amount, Currency currency)
+    {
+        decimal convertedAmount = currency.GetConversionFrom("USD", amount);
+        Transaction transaction = new Transaction(this, paidTo, convertedAmount);
+
+        paidTo.Transactions.Add(transaction);
         Transactions.Add(transaction);
     }
 
-    public Dictionary<int, decimal> GetOwesPersonInCurrency(Currency currency)
+    public decimal GetAmountPaidInCurrency(Person person, Currency currency)
     {
-        Dictionary<int, decimal> newOwesPerson = new Dictionary<int, decimal>();
-        foreach (KeyValuePair<int, decimal> entry in OwesPerson)
-        {
-            decimal newAmount = currency.GetConversionFrom("USD", entry.Value);
-            newOwesPerson.Add(entry.Key, newAmount);
-        }
-        return newOwesPerson;
+        return currency.GetPriceFromUSD(GetPaidBy(person));
     }
 
+    public decimal GetAmountDueInCurrency(Person person, Currency currency)
+    {
+        return currency.GetPriceFromUSD(GetDueFrom(person));
+    }
 
+    public decimal GetPaidBy(Person person)
+    {
+        decimal paid = 0;
+        AmountPaid.TryGetValue(person.Id, out paid);
+        return paid;
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public decimal GetDueFrom(Person person)
+    {
+        decimal due = 0;
+        AmountDue.TryGetValue(person.Id, out due);
+        return due;
+    }
+
+    public bool IsOwedOrDue(Person person)
+    {
+        return GetDueFrom(person) - GetPaidBy(person) != 0;
+        
+    }
 }

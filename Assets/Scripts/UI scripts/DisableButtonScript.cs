@@ -11,9 +11,4 @@ public class DisableButtonScript : MonoBehaviour {
         GetComponent<Button>().interactable = false;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

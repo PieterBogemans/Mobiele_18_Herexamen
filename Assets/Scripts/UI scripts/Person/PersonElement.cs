@@ -7,7 +7,6 @@ public class PersonElement : MonoBehaviour {
 
     public Button PersonButton;
     public Person Person;
-    public GameObject TripPane;
 
 	// Use this for initialization
 	void Start () {
@@ -20,15 +19,16 @@ public class PersonElement : MonoBehaviour {
 
         PersonButton.GetComponentInChildren<Text>().text = Person.PersonName;
         PersonButton.onClick.AddListener(AddButtonOnClick);
-    }
+    } 
 
     public void AddButtonOnClick()
     {
-        /*
-        TripPane.transform.SetAsLastSibling();
-        GameObject Scripts = GameObject.Find("Scripts");
-        PersonDetails details = Scripts.GetComponent<PersonDetails>();
-        details.Setup(Person);
-        */
+        GameObject personDetails = GameObject.Find("PersonDetailsPane");
+        personDetails.transform.SetAsLastSibling();
+        GameObject scripts = GameObject.Find("Scripts");
+        OwesPersonList list = scripts.GetComponent<OwesPersonList>();
+        CurrencyRepository repo = scripts.GetComponent<CurrencyRepository>();
+        scripts.GetComponent<PersonDetails>().Setup(Person);
+        list.Prime();
     }
 }

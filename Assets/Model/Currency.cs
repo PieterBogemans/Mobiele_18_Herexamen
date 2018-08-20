@@ -6,8 +6,8 @@ public class Currency {
 
     public string CurrencyCode { get; set; }
     public static CurrencyConversionRate Rates { get; set; }
-    public static CurrencyConversionRate MemoryRates { get; set; }
-    public static CurrencyConversionRate UserRates { get; set; }
+    private static CurrencyConversionRate MemoryRates { get; set; }
+    private static CurrencyConversionRate UserRates { get; set; }
 
     public Currency(string code)
     {
@@ -32,15 +32,34 @@ public class Currency {
         return price * (decimal) Rates.GetConversionFrom(this.CurrencyCode, "USD");
     }
 
+    public decimal GetPriceFromUSD(decimal price)
+    {
+        return price * (decimal)Rates.GetConversionFrom("USD", this.CurrencyCode);
+    }
 
+    public static void UseCustomValues()
+    {
+        Rates = UserRates;
+    }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static void UseMemoryValues()
+    {
+        Rates = MemoryRates;
+    }
+
+    public static void ChangeRate(string currencyCode, double rate)
+    {
+        UserRates.ChangeRate(currencyCode, rate);
+    }
+
+    public static double GetRate(string currencyCode)
+    {
+        return Rates.GetRate(currencyCode);
+    }
+
+    public static double GetCustomRate(string currencyCode)
+    {
+        return UserRates.GetRate(currencyCode);
+    }
+
 }

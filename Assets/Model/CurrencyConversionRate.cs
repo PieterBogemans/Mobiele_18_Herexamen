@@ -5,6 +5,25 @@ public class CurrencyConversionRate
 {
     public Dictionary<string, double> Rates { get; set; }
 
+    public double GetRate(string currencyCode)
+    {
+        return Rates[currencyCode];
+    }
+
+    public void ChangeRate(string currencyCode, double rate)
+    {
+        Rates[currencyCode] = rate;
+    }
+
+    public double GetConversionFrom(string originalCurrencyCode, string targetCurrencyCode)
+    {
+        double targetRate, thisRate;
+        Rates.TryGetValue(targetCurrencyCode, out targetRate);
+        Rates.TryGetValue(originalCurrencyCode, out thisRate);
+        return targetRate / thisRate;
+
+    }
+
     public CurrencyConversionRate()
     {
         Rates = new Dictionary<string, double>
@@ -182,17 +201,5 @@ public class CurrencyConversionRate
         };
     }
 
-    public void ChangeRate(string currencyCode, double rate)
-    {
-        Rates[currencyCode] = rate;
-    }
-
-    public double GetConversionFrom(string originalCurrencyCode, string targetCurrencyCode)
-    {
-        double targetRate, thisRate;
-        Rates.TryGetValue(targetCurrencyCode, out targetRate);
-        Rates.TryGetValue(originalCurrencyCode, out thisRate);
-        return targetRate / thisRate;
-
-    }
+    
 }

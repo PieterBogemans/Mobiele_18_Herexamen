@@ -70,7 +70,7 @@ public class TripDetails : MonoBehaviour {
         foreach (Currency currency in Trip.Currencies)
         {
             CurrencyElement element = (CurrencyElement)Instantiate(currencyElementPrefab);
-            element.PrimeButton(currency);
+            element.PrimeButtonInTrip(currency);
             element.transform.SetParent(OtherCurrencies, false);
         }
         
