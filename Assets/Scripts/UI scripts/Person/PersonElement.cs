@@ -24,7 +24,9 @@ public class PersonElement : MonoBehaviour {
     public void AddButtonOnClick()
     {
         GameObject personDetails = GameObject.Find("PersonDetailsPane");
+        GameObject people = GameObject.Find("People");
         personDetails.transform.SetAsLastSibling();
+        people.transform.SetAsLastSibling();
         GameObject scripts = GameObject.Find("Scripts");
         OwesPersonList list = scripts.GetComponent<OwesPersonList>();
         CurrencyRepository repo = scripts.GetComponent<CurrencyRepository>();
